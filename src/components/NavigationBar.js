@@ -1,8 +1,8 @@
 export default function NavigationBar() {
     return(
         <div>
-            <button>add</button>
-            <button>login</button>
+            <button>Create New</button>
+            <button>Log Out</button>
         </div>
     );
 }
