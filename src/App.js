@@ -48,7 +48,7 @@ function App() {
   return (
     <div className="App">
       <NavigationBar />
-      <SearchBar onSearch={handleSearch}/>
+      <SearchBar search={searchTerm} onSearch={handleSearch}/>
       <SearchableItemList clothingList={searchedClothing}/>
     </div>
   );

@@ -1,10 +1,10 @@
 import SearchableItem from "./SearchableItem";
 
-export default function SearchableItemList(props) {
+export default function SearchableItemList({ clothingList }) {
     return(
         <div>
             <p>SeachableItemList works!</p>
-            {props.clothingList.map((item) => (
+            {clothingList.map((item) => (
                 <SearchableItem key={item.id} item={item}/>
             ))}
         </div>
