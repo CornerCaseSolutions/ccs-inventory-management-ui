@@ -92,7 +92,7 @@ function App() {
       id: 11,
       type: 'SOCKS',
       color: 'Red',
-      brand: 'Vans',
+      brand: 'Cars',
       gender: 'MALE',
       size: 'LARGE',
       condition: 'FAIR'
@@ -100,7 +100,7 @@ function App() {
       id: 12,
       type: 'OUTERWEAR',
       color: 'Gray',
-      brand: 'Papagonia',
+      brand: 'Appalachian',
       gender: 'FEMALE',
       size: 'EXTRA_SMALL',
       condition: 'EXCELLENT'
