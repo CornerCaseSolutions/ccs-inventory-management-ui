@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import {
     Button, 
     Dialog, 
@@ -12,20 +12,51 @@ import {
     IconButton, 
     List, 
     ListItem, 
-    ListItemText 
+    ListItemText,
+    Snackbar
 } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function SearchableItem({item}) {
     delete item.id;
-    let [isOpen, setDialogState] = useState(false);
+    let [isDialogOpen, setDialogState] = useState(false);
+    let [isSnackbarOpen, setSnackbarState] = useState(false);
+
+    const action = (
+        <Fragment>
+          <Button size="small" onClick={closeSnackbar} color="inherit">
+            UNDO
+          </Button>
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={closeSnackbar}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </Fragment>
+      );
 
     function openDialog() {
-        setDialogState(true)
+        setDialogState(true);
     }
 
     function closeDialog() {
-        setDialogState(false)
+        setDialogState(false);
+    }
+
+    function deleteItemDialog() {
+        setDialogState(false);
+        setSnackbarState(true);
+    }
+
+    function closeSnackbar(event, reason) {
+        if (reason === 'clickaway') {
+          return;
+        }
+        setSnackbarState(false);
     }
 
     return(
@@ -38,7 +69,7 @@ export default function SearchableItem({item}) {
                     <IconButton onClick={openDialog}><InfoIcon color="primary"/></IconButton>
                 </TableCell>
             </TableRow>
-            <Dialog open={isOpen} onClose={closeDialog} fullWidth>
+            <Dialog open={isDialogOpen} onClose={closeDialog} fullWidth>
                 <DialogTitle id="alert-dialog-title">Item Details</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
@@ -62,9 +93,21 @@ export default function SearchableItem({item}) {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={closeDialog} autoFocus>Close</Button>
-                    <Button onClick={closeDialog}>Delete</Button>
+                    <Button onClick={deleteItemDialog}>Delete</Button>
                 </DialogActions>
             </Dialog>        
+            <Snackbar
+                open={isSnackbarOpen}
+                autoHideDuration={6000}
+                onClose={closeSnackbar}
+                message="Item deleted"
+                action={action}
+                ContentProps={{
+                    sx: {
+                      background: "#1976d2"
+                    }
+                }}
+            />
         </>
     );
 }
