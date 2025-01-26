@@ -1,8 +1,4 @@
-import Button from '@mui/material/Button';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Box from '@mui/material/Box';
-import { Grid2 } from '@mui/material';
+import { Grid2, Box, AppBar, Toolbar, Button } from '@mui/material';
 
 export default function NavigationBar() {
     return(

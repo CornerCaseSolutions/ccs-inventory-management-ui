@@ -1,12 +1,8 @@
 import { React, useState } from 'react';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
+import { Container, Box, Stack } from '@mui/material';
 
 import './App.css';
-import NavigationBar from './components/NavigationBar';
-import SearchBar from './components/SearchBar';
-import SearchableItemList from './components/SearchableItemList'
-import { Container } from '@mui/material';
+import { NavigationBar, SearchBar, SearchableItemList } from './components';
 
 function App() {
   const initialClothingList = [

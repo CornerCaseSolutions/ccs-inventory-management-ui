@@ -1,9 +1,12 @@
-import { Box, Select } from '@mui/material';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
+import { 
+    Box, 
+    Select, 
+    InputLabel, 
+    MenuItem, 
+    FormControl,
+    TextField 
+} from '@mui/material';
 
-import TextField from '@mui/material/TextField';
 export default function SearchBar({search, onSearch, selectedType, onSelect}) {
     const clothingTypes = {
         OUTERWEAR: "outerwear",
