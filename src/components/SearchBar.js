@@ -6,23 +6,9 @@ import {
     FormControl,
     TextField 
 } from '@mui/material';
+import { Type } from './constants/const';
 
 export default function SearchBar({search, onSearch, selectedType, onSelect}) {
-    const clothingTypes = {
-        OUTERWEAR: "outerwear",
-        SHIRT: "shirt",
-        VEST: "vest",
-        PANTS: "pants",
-        UNDERWEAR: "underwear",
-        SOCKS: "socks",
-        GLOVES: "gloves",
-        SCARF: "scarf",
-        HAT: "hat",
-        GLASSES: "glasses",
-        JEWELERY: "jewelery",
-        SHOES: "shoes",
-        MISCELLANEOUS: "miscellaneous"
-    }
 
     return(
         <Box sx={{ minWidth: '30%', maxWidth: '50%'}}>
@@ -35,8 +21,8 @@ export default function SearchBar({search, onSearch, selectedType, onSelect}) {
                 label="Clothing Type"
                 onChange={onSelect}
                 >
-                    {Object.keys(clothingTypes).map((type) => (
-                        <MenuItem value={type}>{type}</MenuItem>
+                    {Object.keys(Type).map((type) => (
+                        <MenuItem value={type} key={type}>{type}</MenuItem>
                     ))}
                 </Select>
             </FormControl>            

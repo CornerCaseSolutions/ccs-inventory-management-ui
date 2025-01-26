@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react';
+import { useState } from 'react';
 import {
     Button, 
     Dialog, 
@@ -19,12 +19,11 @@ import InfoIcon from '@mui/icons-material/Info';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function SearchableItem({item}) {
-    delete item.id;
     let [isDialogOpen, setDialogState] = useState(false);
     let [isSnackbarOpen, setSnackbarState] = useState(false);
 
     const action = (
-        <Fragment>
+        <>
           <Button size="small" onClick={closeSnackbar} color="inherit">
             UNDO
           </Button>
@@ -36,7 +35,7 @@ export default function SearchableItem({item}) {
           >
             <CloseIcon fontSize="small" />
           </IconButton>
-        </Fragment>
+        </>
       );
 
     function openDialog() {
@@ -79,11 +78,13 @@ export default function SearchableItem({item}) {
                               borderRadius: 2,
                               border: '1px solid',
                               borderColor: 'divider'
-                        }}>
-                            {Object.keys(item).map((key) => (
+                            }}
+                        >
+                            {Object.keys(item).map((detail_key) => (
                                 <>
-                                    <ListItem>
-                                        <ListItemText primary={`${key} : ${item[key]}`}/>
+                                    <ListItem key={`${item.id}_${detail_key}`}>
+                                        {delete item.id}
+                                        <ListItemText primary={`${detail_key} : ${item[detail_key]}`}/>
                                     </ListItem>
                                     <Divider variant="middle" component="li" />
                                 </>
