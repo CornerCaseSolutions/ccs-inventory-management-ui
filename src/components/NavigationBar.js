@@ -1,22 +1,20 @@
 import { useState } from 'react';
 import { Grid2, Box, AppBar, Toolbar, Button } from '@mui/material';
-import AddItemPage from './AddItemPage';
+import ItemFormDialog from './ItemFormDialog';
 
 export default function NavigationBar() {
 
     let [isAddDialogOpen, setAddDialogState] = useState(false);
     if(isAddDialogOpen) {
-        return <AddItemPage addDialogState={isAddDialogOpen} handleClose={closeAddDialog}/>;
+        return <ItemFormDialog formDialogState={isAddDialogOpen} handleClose={closeAddDialog} formType="Add"/>;
     }
 
     function openAddDialog() {
         setAddDialogState(true);
-        console.log("addDialog should open");
     }
 
     function closeAddDialog() {
         setAddDialogState(false);
-        console.log("addDialog should close");
     }
 
     return(

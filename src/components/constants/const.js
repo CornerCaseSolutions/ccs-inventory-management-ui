@@ -1,17 +1,17 @@
 export const Type = {
-    OUTERWEAR: "outerwear",
-    SHIRT: "shirt",
-    VEST: "vest",
-    PANTS: "pants",
-    UNDERWEAR: "underwear",
-    SOCKS: "socks",
-    GLOVES: "gloves",
-    SCARF: "scarf",
-    HAT: "hat",
-    GLASSES: "glasses",
-    JEWELERY: "jewelery",
-    SHOES: "shoes",
-    MISCELLANEOUS: "miscellaneous"
+    OUTERWEAR: "Outerwear",
+    SHIRT: "Shirt",
+    VEST: "Vest",
+    PANTS: "Pants",
+    UNDERWEAR: "Underwear",
+    SOCKS: "Socks",
+    GLOVES: "Gloves",
+    SCARF: "Scarf",
+    HAT: "Hat",
+    GLASSES: "Glasses",
+    JEWELERY: "Jewelery",
+    SHOES: "Shoes",
+    MISCELLANEOUS: "Miscellaneous"
 }
 
 export const Gender = {

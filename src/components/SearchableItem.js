@@ -1,42 +1,27 @@
 import { useState } from 'react';
-import {
-    Button, 
-    Dialog, 
-    DialogActions, 
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    TableRow,
-    TableCell,
-    Divider, 
-    IconButton, 
-    List, 
-    ListItem, 
-    ListItemText,
-    Snackbar
-} from '@mui/material';
+import { TableRow, TableCell, IconButton } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
-import CloseIcon from '@mui/icons-material/Close';
+import EditIcon from '@mui/icons-material/Edit';
+
+import ItemDetailsDialog from './ItemDetailsDialog';
+import DeletedItemSnackbar from './DeletedItemSnackbar';
+import ItemFormDialog from './ItemFormDialog';
 
 export default function SearchableItem({item}) {
     let [isDialogOpen, setDialogState] = useState(false);
     let [isSnackbarOpen, setSnackbarState] = useState(false);
+    let [isEditFormDialogOpen, setEditFormDialogState] = useState(false);
+    if(isDialogOpen) {
+        return <ItemDetailsDialog detailsDialogState={isDialogOpen} closeDetailsDialog={closeDialog} deleteItemDialog={deleteItemDialog} item={item} /> 
+    }
 
-    const action = (
-        <>
-          <Button size="small" onClick={closeSnackbar} color="inherit">
-            UNDO
-          </Button>
-          <IconButton
-            size="small"
-            aria-label="close"
-            color="inherit"
-            onClick={closeSnackbar}
-          >
-            <CloseIcon fontSize="small" />
-          </IconButton>
-        </>
-      );
+    if(isSnackbarOpen) {
+        return <DeletedItemSnackbar deletedItemSnackbarState={isSnackbarOpen} closeDeletedItemSnackbar={closeSnackbar} undoDelete={closeAndUndoDelete}/>
+    }
+
+    if(isEditFormDialogOpen) {
+        return <ItemFormDialog formDialogState={isEditFormDialogOpen} handleClose={closeEditDialog} formType="Edit" item={item}/>
+    }
 
     function openDialog() {
         setDialogState(true);
@@ -58,6 +43,19 @@ export default function SearchableItem({item}) {
         setSnackbarState(false);
     }
 
+    function closeAndUndoDelete(event, reason) {
+        closeSnackbar(event, reason);
+        console.log("Add UNDO DELETE here!! :)");
+    }
+
+    function openEditDialog() {
+        setEditFormDialogState(true);
+    }
+
+    function closeEditDialog() {
+        setEditFormDialogState(false);
+    }
+
     return(
         <>
             <TableRow>
@@ -65,50 +63,10 @@ export default function SearchableItem({item}) {
                 <TableCell>{item.color}</TableCell>
                 <TableCell>{item.brand}</TableCell>
                 <TableCell>
+                <IconButton onClick={openEditDialog}><EditIcon color="primary"/></IconButton>
                     <IconButton onClick={openDialog}><InfoIcon color="primary"/></IconButton>
                 </TableCell>
-            </TableRow>
-            <Dialog open={isDialogOpen} onClose={closeDialog} fullWidth>
-                <DialogTitle id="alert-dialog-title">Item Details</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        <List sx={{
-                              py: 0,
-                              width: '100%',
-                              borderRadius: 2,
-                              border: '1px solid',
-                              borderColor: 'divider'
-                            }}
-                        >
-                            {Object.keys(item).map((detail_key) => (
-                                <>
-                                    <ListItem key={`${item.id}_${detail_key}`}>
-                                        {delete item.id}
-                                        <ListItemText primary={`${detail_key} : ${item[detail_key]}`}/>
-                                    </ListItem>
-                                    <Divider variant="middle" component="li" />
-                                </>
-                            ))}
-                        </List>
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={closeDialog} autoFocus>Close</Button>
-                    <Button onClick={deleteItemDialog}>Delete</Button>
-                </DialogActions>
-            </Dialog>        
-            <Snackbar
-                open={isSnackbarOpen}
-                autoHideDuration={6000}
-                onClose={closeSnackbar}
-                message="Item deleted"
-                action={action}
-                ContentProps={{
-                    sx: {
-                      background: "#1976d2"
-                    }
-                }}
-            />
+            </TableRow>     
         </>
     );
 }

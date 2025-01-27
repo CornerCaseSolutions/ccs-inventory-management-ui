@@ -12,7 +12,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import ItemFormPage from './ItemFormPage';
 
-export default function AddItemPage({addDialogState, handleClose}) {
+export default function AddItemPage({formDialogState, handleClose, formType, item}) {
     const SlideTransition = forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
       });
@@ -21,7 +21,7 @@ export default function AddItemPage({addDialogState, handleClose}) {
         <>
             <Dialog
                 fullScreen
-                open={addDialogState}
+                open={formDialogState}
                 onClose={handleClose}
                 slots={{
                     transition: SlideTransition
@@ -38,7 +38,7 @@ export default function AddItemPage({addDialogState, handleClose}) {
                             <CloseIcon />
                         </IconButton>
                         <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-                        Add New Item
+                            {formType} New Item
                         </Typography>
                         <Button autoFocus color="inherit" onClick={handleClose}>
                             save
@@ -46,7 +46,7 @@ export default function AddItemPage({addDialogState, handleClose}) {
                     </Toolbar>
                 </AppBar>
                 <Box>
-                    <ItemFormPage />
+                    <ItemFormPage item={item} />
                 </Box>
             </Dialog>
         </>
