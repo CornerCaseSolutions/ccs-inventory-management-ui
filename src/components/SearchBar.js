@@ -1,8 +1,31 @@
-export default function SearchBar({ search, onSearch}) {
+import { 
+    Box, 
+    Select, 
+    InputLabel, 
+    MenuItem, 
+    FormControl,
+    TextField 
+} from '@mui/material';
+import { Type } from './constants/const';
+
+export default function SearchBar({search, onSearch, selectedType, onSelect}) {
+
     return(
-        <div>
-            <label htmlFor="search">Search: </label>
-            <input id="search" type="text" value={search} onChange={onSearch}/>
-        </div>
+        <Box sx={{ minWidth: '30%', maxWidth: '50%'}}>
+            <TextField id="outlined-basic" label="Brand" variant="outlined" value={search} onChange={onSearch} sx={{ width: '49%', mr: '2%' }}/>
+            <FormControl sx={{ width: '49%' }}>
+                <InputLabel>Clothing Type</InputLabel>
+                <Select
+                labelId='type-select-field'
+                value={selectedType}
+                label="Clothing Type"
+                onChange={onSelect}
+                >
+                    {Object.keys(Type).map((type) => (
+                        <MenuItem value={type} key={type}>{type}</MenuItem>
+                    ))}
+                </Select>
+            </FormControl>            
+        </Box>      
     );
 }
