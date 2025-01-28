@@ -6,13 +6,11 @@ import Button from '@mui/material/Button';
 export default function BasicButtons() {
   return (
     <Stack spacing={2}>
-    
         <TextField
           username
           id="outlined-error"
           label="Username"
         />
-        
         <TextField
           password
           id="outlined-error-helper-text"
