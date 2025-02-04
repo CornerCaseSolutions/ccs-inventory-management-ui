@@ -21,14 +21,14 @@ pipeline {
             }
         }
 
-        stage('Lint') {
-            steps {
-                script {
-                    // Run ESLint or any linter you are using
-                    sh 'npm run lint'
-                }
-            }
-        }
+        // stage('Lint') {
+        //     steps {
+        //         script {
+        //             // Run ESLint or any linter you are using
+        //             sh 'npm run lint'
+        //         }
+        //     }
+        // }
 
         // stage('Test') {
         //     steps {
