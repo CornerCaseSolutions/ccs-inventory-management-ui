@@ -3,19 +3,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-export default function LoginField() {
-
-  const credentials = ['username', 'passsword']
-
-  const [submittedUsername, setSubmittedUsername] = React.useState('')
-  const [submittedPassword, setSubmittedPassword] = React.useState('')
-
-
-  handleLoginButtonClick = () => {
-    if (submittedPassword === credentials[0] && submittedUsername === credentials[1]) {
-      console.log('YOU HAVE LOGGED IN SUCCESSFULLY')
-    }
-  }
+export default function LoginField(props) {
 
 
   return (
@@ -25,15 +13,15 @@ export default function LoginField() {
           username
           id="outlined-error"
           label="Username"
-          onChange={(e) => setSubmittedUsername(e.target.value)}
+          onChange={props.onUsernameEntry}
         />
         <TextField
           password
           id="outlined-error-helper-text"
           label="Password"
-          onChange={(e) => setSubmittedPassword(e.target.value)}
+          onChange={props.onPasswordEntry}
         />
-        <Button onClick={handleLoginButtonClick()} variant="contained">Login</Button>
+        <Button onClick={props.onLoginButtonClick} variant="contained">Login</Button>
     </Stack>
   );
 }
