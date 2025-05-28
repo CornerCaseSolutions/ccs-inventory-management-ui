@@ -10,16 +10,15 @@ export default function LoginField(props) {
     // add an onclick event for login button in JSX
     <Stack spacing={2}>
         <TextField
-          username
-          id="outlined-error"
+          id="username"
           label="Username"
           onChange={props.onUsernameEntry}
         />
         <TextField
-          password
-          id="outlined-error-helper-text"
+          id="password"
           label="Password"
           onChange={props.onPasswordEntry}
+          type="password"
         />
         <Button onClick={props.onLoginButtonClick} variant="contained">Login</Button>
     </Stack>
