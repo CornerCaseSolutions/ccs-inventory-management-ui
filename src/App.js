@@ -107,9 +107,30 @@ function App() {
     },
   ];
 
+  const credentials = ['username', 'passsword']
+  
   let [searchTerm, setSearchState] = useState('');
   let [typeSelect, setTypeState] = useState('');
   let [clothingStateList, setClothingState] = useState(initialClothingList)
+  let [submittedUsername, setSubmittedUsername] = React.useState('')
+  let [submittedPassword, setSubmittedPassword] = React.useState('')
+
+  
+  
+  const handleUsernameEntry = (event) => {
+    setSubmittedUsername(event.target.value)
+  }
+
+  const handlePasswordEntry = (event) => {
+    setSubmittedPassword(event.target.value)
+  }
+
+  const handleLoginButtonClick = () => {
+    if (submittedPassword === credentials[0] && submittedUsername === credentials[1]) {
+      console.log('YOU HAVE LOGGED IN SUCCESSFULLY')
+    }
+  }
+
   
   function handleSearch(event) {
       setSearchState(event.target.value);
@@ -129,6 +150,10 @@ function App() {
   const searchedClothingList = initialClothingList.filter((item) => {
     return item.brand.toLowerCase().includes(searchTerm.toLowerCase()) && item.type.toLowerCase().includes(typeSelect.toLowerCase());
   });
+
+  // Login needs to be addressed
+  // component declaration is as follows:
+  // <LoginField onUsernameEntry={handleUsernameEntry} onPasswordEntry={handlePasswordEntry} onLoginButtonClick={handleLoginButtonClick}/>
 
   return (
     <div className="App">
